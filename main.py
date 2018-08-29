@@ -3,10 +3,11 @@ import os
 import requests
 from stay_alive import staying_alive
 from dotenv import load_dotenv
+import factory as factory
 
 load_dotenv('./.env')
 
-client =  discord.Client()
+client = factory.Discord(client=discord.Client()).client
 
 memes_requested = requests.get('https://api.imgflip.com/get_memes').json().get('data')
 
