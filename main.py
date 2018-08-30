@@ -4,6 +4,7 @@ import requests
 from stay_alive import staying_alive
 from dotenv import load_dotenv
 import factory as factory
+import core
 
 load_dotenv('./.env')
 
@@ -13,8 +14,7 @@ memes_requested = requests.get('https://api.imgflip.com/get_memes').json().get('
 
 @client.event
 async def on_ready():
-    await client.send_message(client.channel, "Oh, boi. Here we go.")
-
+    await core.greeter(client, discord.utils.get(client.get_all_channels(), name = 'general'), core.message_generator())
 
 @client.event
 async def on_message(message):
